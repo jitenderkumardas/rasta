@@ -9,15 +9,15 @@ const STATUS_CHIPS = [
 
 export default function FieldofficerView() {
   const { fieldReport, submitFieldReport, formResetSignal } = useAppStore();
-  
+
   // Local form state (not in store — this is UI state, not simulation state)
   const [selectedChip, setSelectedChip] = useState('OPEN');
   const [notes, setNotes] = useState('');
   const [photoAttached, setPhotoAttached] = useState(false);
-  
+
   const chipsBarRef = useRef(null);
   const chipPillRef = useRef(null);
-  
+
   // Watch formResetSignal to clear form on reset
   useEffect(() => {
     setSelectedChip('OPEN');
@@ -27,7 +27,7 @@ export default function FieldofficerView() {
 
   // Sliding pill — update position whenever selectedChip changes
   useEffect(() => {
-    const bar  = chipsBarRef.current;
+    const bar = chipsBarRef.current;
     const pill = chipPillRef.current;
     if (!bar || !pill) return;
     const activeBtn = bar.querySelector('[aria-selected="true"]');
@@ -36,18 +36,18 @@ export default function FieldofficerView() {
       if (!animate) {
         const prev = pill.style.transition;
         pill.style.transition = 'none';
-        pill.style.transform  = `translateX(${activeBtn.offsetLeft - 4}px)`;
-        pill.style.width      = `${activeBtn.offsetWidth}px`;
+        pill.style.transform = `translateX(${activeBtn.offsetLeft - 4}px)`;
+        pill.style.width = `${activeBtn.offsetWidth}px`;
         void pill.offsetWidth; // force reflow
         pill.style.transition = prev;
       } else {
-        pill.style.transform  = `translateX(${activeBtn.offsetLeft - 4}px)`;
-        pill.style.width      = `${activeBtn.offsetWidth}px`;
+        pill.style.transform = `translateX(${activeBtn.offsetLeft - 4}px)`;
+        pill.style.width = `${activeBtn.offsetWidth}px`;
       }
     };
     movePill(true);
   }, [selectedChip]);
-  
+
   const handleSubmit = () => {
     submitFieldReport({
       photo: photoAttached ? 'placeholder.jpg' : null,
@@ -55,11 +55,11 @@ export default function FieldofficerView() {
       notes
     });
   };
-  
+
   const isSubmitting = fieldReport.status === 'saving';
   const isSynced = fieldReport.status === 'synced';
   const canSubmit = !isSubmitting && !isSynced;
-  
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -89,7 +89,7 @@ export default function FieldofficerView() {
             <span>📡 🔋</span>
           </span>
         </div>
-        
+
         {/* Sync Status Banner */}
         {fieldReport.status !== 'idle' && (
           <div
@@ -123,7 +123,7 @@ export default function FieldofficerView() {
             </div>
           </div>
         )}
-        
+
         {/* Header */}
         <div style={{
           padding: '1rem 1.5rem 0.5rem',
@@ -136,7 +136,7 @@ export default function FieldofficerView() {
             Road Condition Report
           </div>
         </div>
-        
+
         {/* Form Content */}
         <div style={{
           padding: '1rem 1.5rem',
@@ -181,7 +181,7 @@ export default function FieldofficerView() {
               </div>
             </div>
           </div>
-          
+
           {/* Status Chips */}
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -189,8 +189,10 @@ export default function FieldofficerView() {
             </div>
             <div className="t-status-chips" ref={chipsBarRef}>
               <span className="t-status-chip-pill" ref={chipPillRef}
-                style={{ borderColor: STATUS_CHIPS.find(c => c.id === selectedChip)?.color + '55' || 'transparent',
-                         background: (STATUS_CHIPS.find(c => c.id === selectedChip)?.color || 'transparent') + '15' }}
+                style={{
+                  borderColor: STATUS_CHIPS.find(c => c.id === selectedChip)?.color + '55' || 'transparent',
+                  background: (STATUS_CHIPS.find(c => c.id === selectedChip)?.color || 'transparent') + '15'
+                }}
               />
               {STATUS_CHIPS.map(chip => {
                 const isSelected = selectedChip === chip.id;
@@ -214,7 +216,7 @@ export default function FieldofficerView() {
               })}
             </div>
           </div>
-          
+
           {/* Notes Input */}
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -241,7 +243,7 @@ export default function FieldofficerView() {
             />
           </div>
         </div>
-        
+
         {/* Submit Button */}
         <div style={{ padding: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
           <button
@@ -278,7 +280,7 @@ export default function FieldofficerView() {
             )}
           </button>
         </div>
-        
+
         {/* Home Indicator */}
         <div style={{
           padding: '0.5rem',

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import DashboardView from './views/DashboardView';
 import DriverView from './views/DriverView';
-import FieldOfficerView from './views/FieldOfficerView';
+import FieldofficerView from './views/FieldofficerView';
 import WarehouseView from './views/WarehouseView';
 import CommunityView from './views/CommunityView';
 import './styles/tokens.css';
@@ -86,7 +86,7 @@ function App() {
       <Routes>
         <Route path="/dashboard" element={<DashboardView />} />
         <Route path="/driver" element={<DriverView />} />
-        <Route path="/field-officer" element={<FieldOfficerView />} />
+        <Route path="/field-officer" element={<FieldofficerView />} />
         <Route path="/warehouse" element={<WarehouseView />} />
         <Route path="/community" element={<CommunityView />} />
         <Route path="*" element={<DashboardView />} />
