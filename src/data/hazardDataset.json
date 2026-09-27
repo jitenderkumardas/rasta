@@ -1,0 +1,21 @@
+{
+  "dataset": "NH29_Hazard_Routing_Demo",
+  "routes": {
+    "primary": {
+      "id": "NH-29",
+      "hazard_points": [
+        { "id": "HZ-126", "location_name": "Tsiedukhru (Pagla Pahar)", "chainage_km": 126.0, "hazard_type": "Landslide / Rockfall", "coordinates": { "lat": 25.7400, "lng": 93.7900 } },
+        { "id": "HZ-164", "location_name": "Zubza", "chainage_km": 164.0, "hazard_type": "Subsidence / Landslide", "coordinates": { "lat": 25.7200, "lng": 94.0400 } },
+        { "id": "HZ-175", "location_name": "Kohima Sinking Zone", "chainage_km": "175.100-175.350", "hazard_type": "Major Sinking Zone", "coordinates": { "lat": 25.6747, "lng": 94.1110 } }
+      ]
+    },
+    "alternate": {
+      "id": "NH-37",
+      "waypoints": [
+        { "location_name": "Badarpur", "coordinates": { "lat": 24.9015, "lng": 92.6025 } },
+        { "location_name": "Jiribam", "coordinates": { "lat": 24.7979, "lng": 93.1180 } },
+        { "location_name": "Imphal", "coordinates": { "lat": 24.8170, "lng": 93.9368 } }
+      ]
+    }
+  }
+}
